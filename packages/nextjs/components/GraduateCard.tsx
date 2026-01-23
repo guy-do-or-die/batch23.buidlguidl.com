@@ -1,3 +1,4 @@
+import { BuilderMerits } from "./BuilderMerits";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -95,7 +96,7 @@ export const GraduateCard = ({ owner, tokenURI }: { owner: string; tokenURI?: st
       mounted = false;
       clearTimeout(timeout);
     };
-  }, [tokenURI]);
+  }, [tokenURI, owner]);
 
   if (!isReady && !metadata) return <SkeletonCard />;
 
@@ -118,6 +119,9 @@ export const GraduateCard = ({ owner, tokenURI }: { owner: string; tokenURI?: st
         <div className="mt-2">
           <Address address={owner} />
         </div>
+
+        <BuilderMerits owner={owner} />
+
         <div className="card-actions mt-4">
           <Link href={`/builders/${owner}`} className="btn btn-sm btn-outline btn-accent">
             View Profile
